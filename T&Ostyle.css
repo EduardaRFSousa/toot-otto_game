@@ -1,0 +1,279 @@
+:root {
+    --darkblue: #29173b;
+    --darkestblue: #1a0c28;
+    --lightpurple: #dcbaff;
+    --hover-lightpurple: #f3d9ff;
+}
+
+@font-face {
+    font-family: 'BigFont';
+    src: url('fonts/CalSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: var(--darkblue);
+    height: 90vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 15% 60% 1fr;
+    grid-template-columns: 1fr;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+#messageContainer {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--lightpurple);
+    color: var(--darkblue);
+    font-family: 'BigFont', sans-serif;
+    font-size: 1.5rem;
+    padding: 10px 25px;
+    border-radius: 30px;
+    box-shadow: 0 0 15px rgba(220, 186, 255, 0.8);
+    opacity: 0;
+    white-space: nowrap;
+}
+
+#messageContainer.show {
+    animation: popFade 2s ease forwards;
+}
+
+@keyframes popFade {
+    0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.95);
+    }
+    10% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.03);
+    }
+    20% {
+    transform: translate(-50%, 0) scale(1);
+    }
+    80% {
+    opacity: 1;
+    }
+    100% {
+    opacity: 0;
+    }
+}
+
+#selection_area {
+    width: 80vh;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.selection_cell p {
+    color: white;
+    transition: background-color 0.5s ease, transform 0.5s ease-in-out;
+}
+
+.selection_cell_mouse_over {
+    border-radius: 50%;
+    width: 12vh;
+    height: 12vh;
+    justify-self: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-family: 'BigFont', sans-serif;
+    font-size: 6vh;
+    color: white;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.49);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.341); 
+    background-color: var(--darkestblue);
+    transition: background-color 0.5s ease, transform 0.5s ease-in-out;
+    cursor: default;
+}
+
+.drop-animation {
+    animation: drop 0.5s ease-out forwards;
+}
+
+@keyframes drop {
+    0% {
+    transform: translateY(-60vh);
+    opacity: 0;
+    }
+    80% {
+    transform: translateY(5%);
+    opacity: 1;
+    }
+    100% {
+    transform: translateY(0);
+    }
+}
+
+main {
+    display: grid;
+    width: 120vh;
+    justify-self: center;
+    grid-template-columns: 1fr 85vh 1fr;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title p {
+    color: white;
+    font-family: 'BigFont', sans-serif;
+    font-size: 10vh;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    margin: 0;
+    text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.379);
+}
+
+#board {
+    border: 1px solid var(--darkestblue);
+    border-radius: 30px;
+    display: grid;
+    grid-template-rows: repeat(4, 12vh);
+    grid-template-columns: repeat(6, 12vh);
+    gap: 1vh;
+    background: linear-gradient(145deg, #2c2f80, #2f1945, #b5179e);
+    align-content: center;
+    justify-content: center;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.341); 
+}
+
+.cell {
+    border-radius: 50%;
+    width: 12vh;
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--darkestblue);
+    background-color: var(--darkblue);
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 10px 10px rgba(29, 4, 53, 0.448);
+}
+
+.emptyCell {
+    border-radius: 50%;
+    border: 0.5px solid var(--lightpurple);
+    background-color: rgba(255, 255, 255, 0.115);
+    transition: background-color 0.5s ease, transform 0.5s ease-in-out;
+    transition: border 0.5s ease, transform 0.5s ease-in-out;
+    width: 12vh;
+    height: 12vh;
+}
+
+.filledCell {
+    border: none;
+    border-radius: 50%;
+    width: 12vh;
+    height: 12vh;
+    font-family: 'BigFont', sans-serif;
+    font-size: 6vh;
+    color: white;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.49);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.341); 
+    background-color: var(--darkestblue);
+}
+
+footer {
+    border: 0px solid yellow;
+    width: 120vh;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 60vh 1fr;
+}
+
+.roundsBox {
+    border: 2px solid var(--lightpurple);
+    width: 26vh;
+    height: 16vh;
+    align-self: center;
+    justify-self: center;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(220, 186, 255, 0.3);
+    backdrop-filter: blur(4px);
+}
+
+.roundsBox div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+}
+
+.roundsBox p {
+    margin: 0;
+    font-family: 'BigFont', sans-serif;
+    font-size: 5vh;
+    color: white;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+}
+
+#currentPlayerBox {
+    border: 2px solid var(--lightpurple);
+    width: 60vh;
+    height: 16vh;
+    align-self: center;
+    justify-self: center;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 25px rgba(220, 186, 255, 0.3);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#currentPlayerBox p {
+    display: inline;
+    font-family: 'BigFont', sans-serif;
+    font-size: 21px;
+    color: white;
+    margin: 0;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+}
+
+#currentPlayer {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.end-message {
+    font-size: 4vh;
+    text-align: center;
+    margin: 0;
+    color: white;
+    font-family: 'BigFont', sans-serif;
+}
+
+#currentPlayerBox button {
+    margin-top: 10px;
+    padding: 1vh 2vh;
+    font-size: 2.5vh;
+    font-family: 'BigFont', sans-serif;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--lightpurple);
+    color: var(--darkblue);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#currentPlayerBox button:hover {
+    background-color: var(--hover-lightpurple);
+}
